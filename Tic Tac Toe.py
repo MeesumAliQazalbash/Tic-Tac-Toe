@@ -1,10 +1,13 @@
 board = [' ' for x in range(10)]
 
+
 def insertLetter(letter, pos):
-    board[pos] = letter 
+    board[pos] = letter
+
 
 def spaceIsFree(pos):
     return board[pos] == ' '
+
 
 def printBoard(board):
     print("   |   |")
@@ -19,11 +22,16 @@ def printBoard(board):
     print(f" {board[7]} | {board[8]} | {board[9]}")
     print("   |   |")
 
+
 def isWinner(bo, le):
-    rows = (bo[7] == le and bo[8] == le and bo[9] == le) or (bo[4] == le and bo[5] == le and bo[6] == le) or (bo[1] == le and bo[2] == le and bo[3] == le)
-    columns = (bo[1] == le and bo[4] == le and bo[7] == le) or (bo[2] == le and bo[5] == le and bo[8] == le) or (bo[3] == le and bo[6] == le and bo[9] == le)
-    diagonals = (bo[1] == le and bo[5] == le and bo[9] == le) or (bo[3] == le and bo[5] == le and bo[7] == le)
+    rows = (bo[7] == le and bo[8] == le and bo[9] == le) or (bo[4] == le and bo[5]
+                                                             == le and bo[6] == le) or (bo[1] == le and bo[2] == le and bo[3] == le)
+    columns = (bo[1] == le and bo[4] == le and bo[7] == le) or (
+        bo[2] == le and bo[5] == le and bo[8] == le) or (bo[3] == le and bo[6] == le and bo[9] == le)
+    diagonals = (bo[1] == le and bo[5] == le and bo[9] == le) or (
+        bo[3] == le and bo[5] == le and bo[7] == le)
     return rows or columns or diagonals
+
 
 def playerMove():
     while True:
@@ -40,6 +48,7 @@ def playerMove():
         except:
             print("Please give a number!")
 
+
 def compMove():
     possibleMoves = [x for x, letter in enumerate(board) if letter == " "]
     move = 0
@@ -51,12 +60,12 @@ def compMove():
             if isWinner(boardCopy, let):
                 move = i
                 return move
-    
+
     cornersOpen = []
     for i in possibleMoves:
-        if i in [1,3,7,9]:
+        if i in [1, 3, 7, 9]:
             cornersOpen.append(i)
-    
+
     if len(cornersOpen) > 0:
         move = selectRandom(cornersOpen)
         return move
@@ -67,21 +76,24 @@ def compMove():
 
     edgesOpen = []
     for i in possibleMoves:
-        if i in [2,4,6,8]:
+        if i in [2, 4, 6, 8]:
             edgesOpen.append(i)
-    
+
     if len(edgesOpen) > 0:
         move = selectRandom(edgesOpen)
     return move
 
+
 def selectRandom(li):
     import random
     ln = len(li)
-    r = random.randrange(0,ln)
+    r = random.randrange(0, ln)
     return li[r]
+
 
 def isBoardFull(board):
     return not(board.count(" ") > 1)
+
 
 def main():
     print("Welcome to HU Tic Tac Toe :)")
@@ -104,10 +116,12 @@ def main():
                 print(f"Computer placed an O on position {move}")
                 printBoard(board)
         else:
-            print("That's grape. Next generation Pakistan is going to make Pakistan crazy 100%")
+            print(
+                "That's grape. Next generation Pakistan is going to make Pakistan crazy 100%")
             break
 
     if isBoardFull(board):
         print("Better Luck Next Time")
+
 
 main()
